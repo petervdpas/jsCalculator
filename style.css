@@ -1,0 +1,110 @@
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-image: url("owl.png");
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: 45%;
+	background-color: #444;
+}
+
+#calculator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 440px;
+	margin: 8px;
+}
+
+#outcome {
+	color: white;
+	background: black;
+	width: 97.333%;
+	height: 58px;
+	text-align: right;
+	font-size: 48px;
+	margin: 0;
+	padding-right: 8px;
+	padding-top: 4px;
+	border: 2px inset #aaa;
+	
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+#control_unit {
+	position: relative;
+	top: 0;
+	left: 0;
+	float: left;
+	height: 72%;
+	margin: 2px 4px;
+	padding: 4px 6px;
+	font-size: 18px;
+	background: #222;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+#last_operation {
+	float: left;
+	color: darkorange;
+	padding-left: 2px;
+}
+
+#last_memory {
+	color: #666;
+}
+
+#keypad {
+	width: 100%;
+	font-size: 60px;
+	margin: 0;
+	padding: 0;
+}
+
+.keyrow {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.btn {
+	display: inline-block;
+	font-size: 44px;
+	width: 22.333%;
+	border: none;
+	margin: 0;
+	padding: 0;
+	
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+.btn2 {
+	width: 47.667%;
+	text-align: left;
+	padding-left: 8%;
+}
+
+.orange {
+	color: white;
+	background: orange;
+}
+.red {
+	color: white;
+	background: red;
+}
+.green {
+	color: white;
+	background: green;
+}
+.gray {
+	color: white;
+	background: gray;
+}

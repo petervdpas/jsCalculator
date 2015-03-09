@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<meta name="description" content="Saar">
+	<meta name="viewport" content="width=device-width">
+	
+	<link rel="stylesheet" href="style.css">
+
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="Calculator.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div id="calculator">
+	
+	<div id="outcome">
+		<div id="control_unit">
+			<div id="last_memory"></div>
+			<div id="last_operation"></div>
+		</div>
+		0
+	</div>
+	<div id="keypad">
+		<div class="keyrow">
+			<button id="btn_clear" class="btn gray" data-digit="clear">C</button>
+			<button id="btn_negative" class="btn gray" data-digit="negative">&#177;</button>
+			<button id="btn_percent" class="btn gray" data-digit="percent">&#37;</button>
+			<button id="btn_divide" class="btn orange" data-digit="divide">&#247;</button>
+		</div>
+		<div class="keyrow">
+			<button id="btn_k7" class="btn" data-digit="7">7</button>
+			<button id="btn_k8" class="btn" data-digit="8">8</button>
+			<button id="btn_k9" class="btn" data-digit="9">9</button>
+			<button id="btn_multiply" class="btn orange" data-digit="multiply">&#215;</button>
+		</div>
+		<div class="keyrow">
+			<button id="btn_k4" class="btn" data-digit="4">4</button>
+			<button id="btn_k5" class="btn" data-digit="5">5</button>
+			<button id="btn_k6" class="btn" data-digit="6">6</button>
+			<button id="btn_minus" class="btn orange" data-digit="minus">&#45;</button>
+		</div>
+		<div class="keyrow">
+			<button id="btn_k1" class="btn" data-digit="1">1</button>
+			<button id="btn_k2" class="btn" data-digit="2">2</button>
+			<button id="btn_k3" class="btn" data-digit="3">3</button>
+			<button id="btn_plus" class="btn orange" data-digit="plus">&#43;</button>
+		</div>
+		<div class="keyrow">
+			<button id="btn_k0" class="btn btn2" data-digit="0">0</button>
+			<button id="btn_dot" class="btn" data-digit=".">&middot;</button>
+			<button id="btn_compute" class="btn green" data-digit="compute">=</button>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(function() {
+
+	var debug = false;
+
+	if (window.location.hash &&
+		(window.location.hash === "#debug")) {
+		debug = true;
+	}
+
+	$(document).on("keypress", function(event) {
+
+		switch (event.which) {
+
+			case 13:
+				$("#btn_compute").trigger("click");
+				break;
+			case 61:
+				$("#btn_compute").trigger("click");
+				break;
+				
+			case 99:
+				$("#btn_clear").trigger("click");
+				break;
+			case 37:
+				$("#btn_percent").trigger("click");
+				break;
+			case 177:
+				$("#btn_negative").trigger("click");
+				break;
+				
+			case 42:
+				$("#btn_multiply").trigger("click");
+				break;
+			case 43:
+				$("#btn_plus").trigger("click");
+				break;
+			case 45:
+				$("#btn_minus").trigger("click");
+				break;
+			case 47:
+				$("#btn_divide").trigger("click");
+				break;
+		
+			case 46:
+				$("#btn_dot").trigger("click");
+				break;
+			case 48:
+				$("#btn_k0").trigger("click");
+				break;
+			case 49:
+				$("#btn_k1").trigger("click");
+				break;
+			case 50:
+				$("#btn_k2").trigger("click");
+				break;
+			case 51:
+				$("#btn_k3").trigger("click");
+				break;
+			case 52:
+				$("#btn_k4").trigger("click");
+				break;
+			case 53:
+				$("#btn_k5").trigger("click");
+				break;
+			case 54:
+				$("#btn_k6").trigger("click");
+				break;
+			case 55:
+				$("#btn_k7").trigger("click");
+				break;
+			case 56:
+				$("#btn_k8").trigger("click");
+				break;
+			case 57:
+				$("#btn_k9").trigger("click");
+				break;
+				
+			default:
+				alert(event.which);
+				break;
+		}
+	});
+
+	var sC = $("#calculator");
+
+	var sCw = sC.width();
+	var sCh = sC.height();
+	var sW = $(window).width();
+	var sH = $(window).height();
+
+	sC.css('left', ((sW - sCw) / 2) + 'px');
+	sC.css('top', ((sH - sCh) / 2) + 'px');
+
+	$(window).resize(function() {
+
+		sW = $(window).width();
+		sH = $(window).height();
+
+		sC.css('left', ((sW - sCw) / 2) + 'px');
+		sC.css('top', ((sH - sCh) / 2) + 'px');
+	});
+
+	var display = $("#outcome");
+	var cUnit = $("#control_unit");
+
+	var calculator = new Calculator(10, false, debug);
+
+	$(".btn").on("click", function() {
+		var digit = $(this).data("digit");
+		calculator.compute(digit);
+
+		display.text(calculator.display());
+		display.prepend(cUnit);
+
+		cUnit.find("#last_operation").html(
+			calculator.operation() + " " + calculator.memory_save);
+		cUnit.find("#last_memory").text(calculator.memoryDisplay());
+	});
+
+});
+
+
+</script>
+		
+</body>
+</html>
+
