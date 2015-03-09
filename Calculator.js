@@ -49,15 +49,11 @@ Calculator.prototype.compute = function(btn) {
 		case 1:
 			// percent
 			_this.result *= 0.01;
-			_this.memory = _this.result;
 			break;
 			
 		case 2:
 			// negative
-			if ( _this.result !== 0 ) {
-				_this.result *= -1;
-			}
-			_this.memory = _this.result;
+			_this.result *= -1;
 			break;
 				
 		case 3:
