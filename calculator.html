@@ -16,12 +16,25 @@
 <body>
 <div id="calculator">
 	
+	<div id="kb_xtra_toggle">&#186;</div>
 	<div id="outcome">
 		<div id="control_unit">
 			<div id="last_memory"></div>
 			<div id="last_operation"></div>
 		</div>
 		0
+	</div>
+	<div id="keypad_extra">
+		<div class="keyrow">
+			<button id="btn_pi" class="btn_e steel" data-digit="pi">
+				<small>&#960;</small></button>
+			<button id="btn_pow2" class="btn_e steel" data-digit="pow2">
+				<small>x&#178;</small></button>
+			<button id="btn_pow2" class="btn_e steel" data-digit="pow3">
+				<small>x&#179;</small></button>
+			<button id="btn_sqrt" class="btn_e steel" data-digit="sqrt">
+				<small>&#8730;</small></button>
+		</div>
 	</div>
 	<div id="keypad">
 		<div class="keyrow">
@@ -141,6 +154,10 @@ $(function() {
 		}
 	});
 
+	$("#kb_xtra_toggle").on("click", function() {
+		$("#keypad_extra").toggle();
+	});
+	
 	var sC = $("#calculator");
 
 	var sCw = sC.width();
@@ -177,6 +194,19 @@ $(function() {
 		cUnit.find("#last_memory").text(calculator.memoryDisplay());
 	});
 
+	$(".btn_e").on("click", function() {
+		var digit = $(this).data("digit");
+		
+		calculator.compute(digit);
+
+		display.text(calculator.display());
+		display.prepend(cUnit);
+
+		cUnit.find("#last_operation").html(
+			calculator.operation() + " " + calculator.memory_save);
+		cUnit.find("#last_memory").text(calculator.memoryDisplay());
+	});
+	
 });
 
 

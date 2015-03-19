@@ -25,14 +25,19 @@ function Calculator(output_size, rld, debug) {
 	
 	this.operations = [
 		'clear', 
-		'percent', 
-		'negative', 
 		'.',
 		'plus', 
 		'minus', 
 		'divide', 
 		'multiply', 
-		'compute'
+		'compute',
+		'percent', 
+		'negative',
+		/* extra functions */
+		'pi',
+		'pow2',
+		'pow3',
+		'sqrt'
 	];
 }
 
@@ -45,18 +50,8 @@ Calculator.prototype.compute = function(btn) {
 			// clear
 			_this.clear();
 			break;
-			
-		case 1:
-			// percent
-			_this.result *= 0.01;
-			break;
-			
-		case 2:
-			// negative
-			_this.result *= -1;
-			break;
 				
-		case 3:
+		case 1:
 			// float
 			if (!_this.float) {
 				if ( (_this.digit_count < 9) && (!_this.computed) ) {
@@ -69,27 +64,27 @@ Calculator.prototype.compute = function(btn) {
 			}
 			break;
 				
-		case 4:
+		case 2:
 			// plus
 			_this.do(btn);
 			break;
 			
-		case 5:
+		case 3:
 			// minus
 			_this.do(btn);
 			break;
 			
-		case 6:
+		case 4:
 			// divide
 			_this.do(btn);
 			break;
 			
-		case 7:
+		case 5:
 			// multiply
 			_this.do(btn);
 			break;
 			
-		case 8:
+		case 6:
 			// compute
 			
 			var switched = _this.operatorSwitched();
@@ -122,19 +117,19 @@ Calculator.prototype.compute = function(btn) {
 			}
 			
 			switch( _this.checkOperation(_this.last_operation) ) {
-				case 4:
+				case 2:
 					// plus
 					_this.result = _this.memory + _this.result;
 					break;
-				case 5:
+				case 3:
 					// minus
 					_this.result = _this.memory - _this.result;
 					break;
-				case 6:
+				case 4:
 					// divide
 					_this.result = _this.memory / _this.result;
 					break;
-				case 7:
+				case 5:
 					// multiply
 					_this.result = _this.memory * _this.result;
 					break;
@@ -148,6 +143,51 @@ Calculator.prototype.compute = function(btn) {
 			_this.saved_operation = _this.last_operation;
 			_this.digit_count = 9;
 			_this.computed = true;
+			break;
+			
+		case 7:
+			// percent
+			_this.result *= 0.01;
+			break;
+			
+		case 8:
+			// negative
+			_this.result *= -1;
+			break;
+			
+
+		/* extra functions */
+		case 9:
+			// pi
+			if ( _this.memory === 0) {
+				_this.memory = _this.result;
+				_this.result = _this.round(Math.PI, 7);
+			} else {
+				_this.memory = _this.result;
+				_this.memory_save = _this.round(Math.PI, 7);
+			}
+			break;
+	
+		case 10:
+			// pow2
+			_this.memory = _this.result;
+			_this.memory_save = 2;
+			_this.last_operation = 'multiply';
+			_this.result = Math.pow(_this.result, 2);
+			break;	
+			
+		case 11:
+			// pow2
+			_this.memory = _this.result;
+			_this.memory_save = 3;
+			_this.last_operation = 'multiply';
+			_this.result = Math.pow(_this.result, 3);
+			break;		
+			
+		case 12:
+			// sqrt
+			_this.memory = _this.result;
+			_this.result = Math.sqrt(_this.result);
 			break;
 			
 		default:
@@ -253,19 +293,19 @@ Calculator.prototype.operation = function() {
 	var op = "";
 	
 	switch( _this.checkOperation(_this.last_operation) ) {
-		case 4:
+		case 2:
 			// plus
 			op = "&#43;"; //"&plus;"; //IE fix
 			break;
-		case 5:
+		case 3:
 			// minus
 			op = "&#45;";
 			break;
-		case 6:
+		case 4:
 			// divide
 			op = "&#247;";
 			break;
-		case 7:
+		case 5:
 			// multiply
 			op = "&#215;";
 			break;

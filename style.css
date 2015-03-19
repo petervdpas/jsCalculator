@@ -24,7 +24,8 @@ body {
 	width: 97.333%;
 	height: 58px;
 	text-align: right;
-	font-size: 48px;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 38px;
 	margin: 0;
 	padding-right: 8px;
 	padding-top: 4px;
@@ -43,7 +44,7 @@ body {
 	height: 72%;
 	margin: 2px 4px;
 	padding: 4px 6px;
-	font-size: 18px;
+	font-size: 16px;
 	background: #222;
 	
 	-webkit-border-radius: 2px;
@@ -62,6 +63,7 @@ body {
 }
 
 #keypad {
+	display: block;
 	width: 100%;
 	font-size: 60px;
 	margin: 0;
@@ -81,6 +83,7 @@ body {
 	border: none;
 	margin: 0;
 	padding: 0;
+	cursor: pointer;
 	
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
@@ -92,13 +95,43 @@ body {
 	padding-left: 8%;
 }
 
+#kb_xtra_toggle {
+	text-align: right;
+	cursor: pointer;
+}
+#keypad_extra {
+	display: none;
+	width: 100%;
+	font-size: 20px;
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+
+.btn_e {
+	display: inline-block;
+	font-size: 22px;
+	width: 18.185%;
+	border: none;
+	margin: 0 2px;
+	padding: 4px 0;
+	cursor: pointer;
+	
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+.steel {
+	color: #ccc;
+	background: #313149;
+}
 .orange {
 	color: white;
 	background: orange;
 }
 .red {
-	color: white;
-	background: red;
+	color: #ccc;
+	background: darkred;
 }
 .green {
 	color: white;
